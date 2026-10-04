@@ -33,11 +33,10 @@
 
 <p align="center">
   <a href="https://karbon.cloud">karbon.cloud</a> ·
-  <a href="https://karbon.cloud/projects">All projects</a> ·
   <a href="https://roblox.com/users/241702665/profile">Roblox</a> ·
   <a href="https://x.com/synoptc">X</a> ·
   <a href="https://instagram.com/synoptc">Instagram</a> ·
-  Discord <code>synoptc</code>
+  <a href="https://discord.com/users/371012868516216854">Discord</a>
 </p>
 
 <p align="center"><sub>Game stats refresh daily from the Roblox API.</sub></p>
