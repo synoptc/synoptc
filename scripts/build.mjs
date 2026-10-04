@@ -85,7 +85,7 @@ function hero(stats) {
     @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
   `;
   const stat = (x, label, value, live = false) =>
-    `${live ? liveDot(x + 4, 258) : ""}<text class="label" x="${live ? x + 16 : x}" y="262">${label}</text><text class="mono" x="${x}" y="296" font-size="24" font-weight="500">${esc(value)}</text>`;
+    `<text class="label" x="${x}" y="262">${label}</text><text class="mono" x="${x}" y="296" font-size="24" font-weight="500"${live ? ` style="fill: ${c.live}"` : ""}>${esc(value)}</text>`;
   const body = `
 <defs>
   <clipPath id="frame"><rect width="${W}" height="${H}" rx="16"/></clipPath>
