@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="assets/bar-projects.svg" width="100%" alt="02 / Projects: open source on GitHub">
+  <img src="assets/bar-projects.svg" width="100%" alt="02 / Projects">
   <a href="https://github.com/synoptc/live-railway"><img src="assets/featured.svg" width="100%" alt="Featured: Live Railway. Live UK train departure boards, with a native iOS app (SwiftUI), a website (Next.js), a backend (Fastify) and self-hosted accounts (Postgres and Redis)."></a>
   <a href="https://github.com/synoptc/xenith"><img src="assets/repo-xenith.svg" width="100%" alt="Xenith: sites and services behind Xenith Technologies, with Stripe payments. Node.js, Stripe, MongoDB."></a>
   <a href="https://github.com/synoptc/xenith-bot"><img src="assets/repo-xenith-bot.svg" width="100%" alt="Xenith Bot: Discord bot for tickets, Premium licences and Roblox group tools. Python, Pycord, Gemini."></a>

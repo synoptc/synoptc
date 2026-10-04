@@ -292,7 +292,7 @@ mkdirSync(out, { recursive: true });
 const write = (name, content) => writeFileSync(join(out, name), content);
 
 write("hero.svg", hero({ ...stats, games: stats.games.length }));
-write("bar-projects.svg", sectionBar("02", "Projects", "Open source on GitHub."));
+write("bar-projects.svg", sectionBar("02", "Projects", ""));
 write("featured.svg", featured());
 profile.repos.forEach((r, i) => write(`repo-${r.repo}.svg`, repoRow(i + 1, r)));
 write("bar-roblox.svg", sectionBar("03", "Roblox", "Games I’ve built and shipped."));

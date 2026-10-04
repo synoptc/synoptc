@@ -11,5 +11,5 @@
 text { fill: #1f2328; } .label { fill: #59636e; } .accent { fill: #6f5bd6; }
      @media (prefers-color-scheme: dark) { text { fill: #ededf2; } .label { fill: #8c8c99; } .accent { fill: #9d8cff; } }</style>
 <text class="label" x="4" y="32"><tspan class="accent">02</tspan>  /  PROJECTS</text>
-<text x="836" y="32" font-size="14" text-anchor="end" font-weight="500">Open source on GitHub.</text>
+<text x="836" y="32" font-size="14" text-anchor="end" font-weight="500"></text>
 </svg>
