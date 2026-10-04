@@ -38,8 +38,6 @@ const baseCss = `
   .label { font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; letter-spacing: 0.14em; fill: ${c.muted}; }
   .muted { fill: ${c.muted}; }
   .accent { fill: ${c.accent}; }
-  .pulse { animation: pulse 2.4s ease-out infinite; transform-box: fill-box; transform-origin: center; }
-  @keyframes pulse { 0% { transform: scale(1); opacity: 0.55; } 100% { transform: scale(3.2); opacity: 0; } }
   @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
 `;
 
@@ -49,9 +47,6 @@ const svg = (h, body, css = "") =>
 ${body}
 </svg>
 `;
-
-const liveDot = (x, y) =>
-  `<circle class="pulse" cx="${x}" cy="${y}" r="3" fill="${c.live}"/><circle cx="${x}" cy="${y}" r="3" fill="${c.live}"/>`;
 
 const arrow = (x, y, s = 12) =>
   `<path d="M${x} ${y}h${s}v${s}M${x} ${y + s}L${x + s} ${y}" stroke="${c.accent}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>`;
@@ -211,8 +206,7 @@ function gameRow(i, game) {
 <text x="72" y="38" font-size="16" font-weight="600" letter-spacing="-0.01em">${esc(game.name)}</text>
 ${
   live
-    ? `${liveDot(560 - full(game.playing).length * 8.4 - 12, 23)}
-<text class="mono" x="560" y="28" font-size="14" font-weight="500" text-anchor="end">${full(game.playing)}</text>
+    ? `<text class="mono" x="560" y="28" font-size="14" font-weight="500" text-anchor="end" style="fill: ${c.live}">${full(game.playing)}</text>
 <text class="label" x="560" y="46" font-size="9.5" text-anchor="end">PLAYING</text>`
     : ""
 }
