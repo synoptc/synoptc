@@ -16,7 +16,7 @@
   },
   "repos": [
     { "name": "Xenith", "repo": "xenith", "blurb": "Sites and services behind Xenith Technologies, with Stripe payments.", "stack": "Node.js · Stripe · MongoDB" },
-    { "name": "Xenith Bot", "repo": "xenith-bot", "blurb": "Discord bot for tickets, Premium licences and Roblox group tools.", "stack": "Python · Pycord · Gemini" }
+    { "name": "Xenith Bot", "repo": "xenith-bot", "blurb": "Discord bot for tickets, Premium licences and Roblox group tools.", "stack": "Python · Pycord · Gemini API" }
   ],
   "games": [
     { "name": "Kingdom World", "universeId": 7787359931, "placeId": 96796259580891, "slug": "Kingdom-World", "featured": true },

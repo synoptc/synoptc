@@ -14,7 +14,7 @@
 <text class="label" x="28" y="49">03</text>
 <text x="72" y="40" font-size="17" font-weight="600" letter-spacing="-0.01em">Xenith Bot</text>
 <text class="muted" x="72" y="62" font-size="13">Discord bot for tickets, Premium licences and Roblox group tools.</text>
-<text class="mono muted" x="770" y="49" font-size="12" letter-spacing="0.02em" text-anchor="end">Python · Pycord · Gemini</text>
+<text class="mono muted" x="770" y="49" font-size="12" letter-spacing="0.02em" text-anchor="end">Python · Pycord · Gemini API</text>
 <path d="M796 38h10v10M796 48L806 38" stroke="#9d8cff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
 
 </svg>
