@@ -38,5 +38,3 @@
   <a href="https://instagram.com/synoptc">Instagram</a> ·
   <a href="https://discord.com/users/371012868516216854">Discord</a>
 </p>
-
-<p align="center"><sub>Game stats refresh daily from the Roblox API.</sub></p>
