@@ -136,26 +136,91 @@ function sectionBar(num, label, title) {
   );
 }
 
-function gameRow(i, game) {
+// Lead project card. The right-hand panel is a station departure board whose
+// "services" are the parts of the project.
+function featured() {
+  const f = profile.featured;
+  const H = 236;
+  const amber = "#ffb547";
+  const px = 458, py = 24, pw = W - px - 24, ph = H - 48;
+  const rowY = (i) => py + 58 + i * 26;
+  const css = `
+    .led { font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; fill: ${amber}; }
+    .ledhead { font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9.5px; letter-spacing: 0.12em; fill: ${amber}; fill-opacity: 0.5; }
+    .flip { animation: flip 0.5s steps(4) backwards; }
+    @keyframes flip { from { opacity: 0; } }
+    .t1 { animation: swap 8s steps(1) infinite; }
+    .t2 { opacity: 0; animation: swap 8s steps(1) reverse infinite; }
+    @keyframes swap { 0% { opacity: 1; } 50% { opacity: 0; } }
+  `;
+  const rows = f.board
+    .map(([part, stack], i) => `<g class="flip" style="animation-delay: ${(0.5 + i * 0.22).toFixed(2)}s">
+  <text class="led" x="${px + 18}" y="${rowY(i)}">${i + 1}</text>
+  <text class="led" x="${px + 62}" y="${rowY(i)}">${esc(part)}</text>
+  <text class="led" x="${px + 142}" y="${rowY(i)}" fill-opacity="0.72">${esc(stack)}</text>
+  <text class="led" x="${px + pw - 18}" y="${rowY(i)}" text-anchor="end">On time</text>
+</g>`)
+    .join("\n");
+  const tickerY = py + ph - 16;
+  const body = `
+<defs>
+  <pattern id="matrix" width="3" height="3" patternUnits="userSpaceOnUse"><path d="M0 2.5H3M2.5 0V3" stroke="#050506" stroke-opacity="0.5"/></pattern>
+</defs>
+<rect x="0.5" y="0.5" width="${W - 1}" height="${H - 1}" rx="15.5" fill="${c.card}" stroke="${c.border}"/>
+
+<text class="label" x="32" y="50"><tspan class="accent">FEATURED</tspan></text>
+<text x="31" y="92" font-size="30" font-weight="600" letter-spacing="-0.03em">${esc(f.name)}</text>
+<text class="muted" x="32" y="124" font-size="14">${esc(f.blurb[0])}</text>
+<text class="muted" x="32" y="145" font-size="14">${esc(f.blurb[1])}</text>
+<text class="mono" x="32" y="${H - 34}" font-size="12" letter-spacing="0.02em">synoptc/${esc(f.repo)}</text>
+${arrow(32 + `synoptc/${f.repo}`.length * 7.45 + 10, H - 44, 9)}
+
+<rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="10" fill="#050506" stroke="${c.borderStrong}"/>
+<text class="ledhead" x="${px + 18}" y="${py + 28}">PLAT</text>
+<text class="ledhead" x="${px + 62}" y="${py + 28}">SERVICE</text>
+<text class="ledhead" x="${px + pw - 18}" y="${py + 28}" text-anchor="end">EXPECTED</text>
+<path d="M${px + 18} ${py + 38.5}H${px + pw - 18}" stroke="${amber}" stroke-opacity="0.18"/>
+${rows}
+<path d="M${px + 18} ${tickerY - 17.5}H${px + pw - 18}" stroke="${amber}" stroke-opacity="0.18"/>
+<text class="led t1" x="${px + pw / 2}" y="${tickerY}" text-anchor="middle">${esc(f.ticker[0])}</text>
+<text class="led t2" x="${px + pw / 2}" y="${tickerY}" text-anchor="middle">${esc(f.ticker[1])}</text>
+<rect x="${px}" y="${py}" width="${pw}" height="${ph}" rx="10" fill="url(#matrix)"/>
+`;
+  return svg(H, body, css);
+}
+
+function repoRow(i, repo) {
   const H = 88;
-  const live = game.playing > 0;
   const body = `
 <rect x="0.5" y="0.5" width="${W - 1}" height="${H - 1}" rx="11.5" fill="${c.card}" stroke="${c.border}"/>
 <text class="label" x="28" y="49">${String(i + 1).padStart(2, "0")}</text>
-<text x="72" y="40" font-size="17" font-weight="600" letter-spacing="-0.01em">${esc(game.name)}</text>
-<text class="muted" x="72" y="62" font-size="13">${esc(game.blurb)}</text>
+<text x="72" y="40" font-size="17" font-weight="600" letter-spacing="-0.01em">${esc(repo.name)}</text>
+<text class="muted" x="72" y="62" font-size="13">${esc(repo.blurb)}</text>
+<text class="mono muted" x="770" y="49" font-size="12" letter-spacing="0.02em" text-anchor="end">${esc(repo.stack)}</text>
+${arrow(796, 38, 10)}
+`;
+  return svg(H, body);
+}
+
+function gameRow(i, game) {
+  const H = 64;
+  const live = game.playing > 0;
+  const body = `
+<rect x="0.5" y="0.5" width="${W - 1}" height="${H - 1}" rx="11.5" fill="${c.card}" stroke="${c.border}"/>
+<text class="label" x="28" y="37">${String(i + 1).padStart(2, "0")}</text>
+<text x="72" y="38" font-size="16" font-weight="600" letter-spacing="-0.01em">${esc(game.name)}</text>
 ${
   live
-    ? `${liveDot(560 - full(game.playing).length * 9.6 - 12, 34)}
-<text class="mono" x="560" y="40" font-size="16" font-weight="500" text-anchor="end">${full(game.playing)}</text>
-<text class="label" x="560" y="62" font-size="10" text-anchor="end">PLAYING</text>`
+    ? `${liveDot(560 - full(game.playing).length * 8.4 - 12, 23)}
+<text class="mono" x="560" y="28" font-size="14" font-weight="500" text-anchor="end">${full(game.playing)}</text>
+<text class="label" x="560" y="46" font-size="9.5" text-anchor="end">PLAYING</text>`
     : ""
 }
-<text class="mono" x="672" y="40" font-size="16" font-weight="500" text-anchor="end">${compact(game.favourites)}</text>
-<text class="label" x="672" y="62" font-size="10" text-anchor="end">FAVS</text>
-<text class="mono" x="770" y="40" font-size="16" font-weight="500" text-anchor="end">${compact(game.visits)}</text>
-<text class="label" x="770" y="62" font-size="10" text-anchor="end">VISITS</text>
-${arrow(796, 38, 10)}
+<text class="mono" x="672" y="28" font-size="14" font-weight="500" text-anchor="end">${compact(game.favourites)}</text>
+<text class="label" x="672" y="46" font-size="9.5" text-anchor="end">FAVS</text>
+<text class="mono" x="770" y="28" font-size="14" font-weight="500" text-anchor="end">${compact(game.visits)}</text>
+<text class="label" x="770" y="46" font-size="9.5" text-anchor="end">VISITS</text>
+${arrow(796, 26, 10)}
 `;
   return svg(H, body);
 }
@@ -233,11 +298,14 @@ mkdirSync(out, { recursive: true });
 const write = (name, content) => writeFileSync(join(out, name), content);
 
 write("hero.svg", hero({ ...stats, games: stats.games.length }));
-write("bar-work.svg", sectionBar("02", "Selected work", "Games I’ve built and shipped."));
-write("bar-experience.svg", sectionBar("03", "Experience", "Where I’ve worked."));
-write("bar-tools.svg", sectionBar("04", "Software & tools", "My daily drivers."));
+write("bar-projects.svg", sectionBar("02", "Projects", "Open source on GitHub."));
+write("featured.svg", featured());
+profile.repos.forEach((r, i) => write(`repo-${r.repo}.svg`, repoRow(i + 1, r)));
+write("bar-roblox.svg", sectionBar("03", "Roblox", "Games I’ve built and shipped."));
 stats.games.filter((g) => g.featured).forEach((g, i) => write(`game-${g.slug.toLowerCase()}.svg`, gameRow(i, g)));
+write("bar-experience.svg", sectionBar("04", "Experience", "Where I’ve worked."));
 write("experience.svg", experience());
+write("bar-tools.svg", sectionBar("05", "Stack", "What I build with."));
 write("tools.svg", tools());
 write("contact.svg", contact());
 
