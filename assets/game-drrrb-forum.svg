@@ -17,7 +17,7 @@
 <text x="72" y="40" font-size="17" font-weight="600" letter-spacing="-0.01em">DRRRB Forum</text>
 <text class="muted" x="72" y="62" font-size="13">Main hub for the DRRRB Forum games.</text>
 <circle class="pulse" cx="519.2" cy="34" r="3" fill="#4ade80"/><circle cx="519.2" cy="34" r="3" fill="#4ade80"/>
-<text class="mono" x="560" y="40" font-size="16" font-weight="500" text-anchor="end">235</text>
+<text class="mono" x="560" y="40" font-size="16" font-weight="500" text-anchor="end">223</text>
 <text class="label" x="560" y="62" font-size="10" text-anchor="end">PLAYING</text>
 <text class="mono" x="672" y="40" font-size="16" font-weight="500" text-anchor="end">27.8K</text>
 <text class="label" x="672" y="62" font-size="10" text-anchor="end">FAVS</text>
