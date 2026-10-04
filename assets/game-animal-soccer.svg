@@ -17,7 +17,7 @@
 <text x="72" y="40" font-size="17" font-weight="600" letter-spacing="-0.01em">Animal Soccer!</text>
 <text class="muted" x="72" y="62" font-size="13">Chaotic low-gravity Red vs. Blue soccer, played as animals.</text>
 <circle class="pulse" cx="538.4" cy="34" r="3" fill="#4ade80"/><circle cx="538.4" cy="34" r="3" fill="#4ade80"/>
-<text class="mono" x="560" y="40" font-size="16" font-weight="500" text-anchor="end">6</text>
+<text class="mono" x="560" y="40" font-size="16" font-weight="500" text-anchor="end">3</text>
 <text class="label" x="560" y="62" font-size="10" text-anchor="end">PLAYING</text>
 <text class="mono" x="672" y="40" font-size="16" font-weight="500" text-anchor="end">294.5K</text>
 <text class="label" x="672" y="62" font-size="10" text-anchor="end">FAVS</text>

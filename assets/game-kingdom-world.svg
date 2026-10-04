@@ -17,7 +17,7 @@
 <text x="72" y="40" font-size="17" font-weight="600" letter-spacing="-0.01em">Kingdom World</text>
 <text class="muted" x="72" y="62" font-size="13">Open-world driving and roleplay through the streets of Riyadh.</text>
 <circle class="pulse" cx="500" cy="34" r="3" fill="#4ade80"/><circle cx="500" cy="34" r="3" fill="#4ade80"/>
-<text class="mono" x="560" y="40" font-size="16" font-weight="500" text-anchor="end">2,231</text>
+<text class="mono" x="560" y="40" font-size="16" font-weight="500" text-anchor="end">2,173</text>
 <text class="label" x="560" y="62" font-size="10" text-anchor="end">PLAYING</text>
 <text class="mono" x="672" y="40" font-size="16" font-weight="500" text-anchor="end">160K</text>
 <text class="label" x="672" y="62" font-size="10" text-anchor="end">FAVS</text>

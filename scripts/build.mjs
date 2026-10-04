@@ -75,7 +75,7 @@ function odometer(text, x, y, size) {
 }
 
 function hero(stats) {
-  const H = 392;
+  const H = 328;
   const css = `
     .roll { animation: roll 1.8s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
     @keyframes roll { from { transform: translateY(0); } }
@@ -84,17 +84,15 @@ function hero(stats) {
     .rise { animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) backwards; }
     @keyframes rise { from { opacity: 0; transform: translateY(10px); } }
   `;
-  const stat = (x, label, value) =>
-    `<text class="label" x="${x}" y="326">${label}</text><text class="mono" x="${x}" y="360" font-size="24" font-weight="500">${esc(value)}</text>`;
-  const playing = `${full(stats.playing)} PLAYING NOW`;
+  const stat = (x, label, value, live = false) =>
+    `${live ? liveDot(x + 4, 258) : ""}<text class="label" x="${live ? x + 16 : x}" y="262">${label}</text><text class="mono" x="${x}" y="296" font-size="24" font-weight="500">${esc(value)}</text>`;
   const body = `
 <defs>
   <clipPath id="frame"><rect width="${W}" height="${H}" rx="16"/></clipPath>
-  <clipPath id="avatar"><circle cx="54" cy="46" r="14"/></clipPath>
-  <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(720 20) scale(460 340)">
+  <radialGradient id="glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(720 0) scale(460 300)">
     <stop stop-color="${c.accent}" stop-opacity="0.26"/><stop offset="1" stop-color="${c.accent}" stop-opacity="0"/>
   </radialGradient>
-  <radialGradient id="fade" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(700 60) scale(520 380)">
+  <radialGradient id="fade" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(700 30) scale(520 330)">
     <stop stop-color="#fff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
   </radialGradient>
   <pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#fff" fill-opacity="0.16"/></pattern>
@@ -107,26 +105,19 @@ function hero(stats) {
 </g>
 <rect x="0.5" y="0.5" width="${W - 1}" height="${H - 1}" rx="15.5" stroke="${c.border}"/>
 
-<image href="data:image/png;base64,${b64("avatar.png")}" x="40" y="32" width="28" height="28" clip-path="url(#avatar)"/>
-<circle cx="54" cy="46" r="14" stroke="${c.borderStrong}"/>
-<text x="79" y="51" font-size="14" font-weight="600">${esc(profile.name)}</text>
-${liveDot(W - 40 - playing.length * 7.9 - 12, 46)}
-<text class="label" x="${W - 40}" y="50" text-anchor="end">${playing}</text>
-<path d="M0 78.5H${W}" stroke="${c.border}"/>
-
 <g class="rise">
-  <text class="muted" x="38" y="160" font-size="52" font-weight="600" letter-spacing="-0.035em">Hi, I’m</text>
-  <text x="38" y="220" font-size="60" font-weight="600" letter-spacing="-0.04em">${esc(profile.name)}<tspan class="accent">.</tspan></text>
+  <text class="muted" x="38" y="96" font-size="52" font-weight="600" letter-spacing="-0.035em">Hi, I’m</text>
+  <text x="38" y="156" font-size="60" font-weight="600" letter-spacing="-0.04em">${esc(profile.name)}<tspan class="accent">.</tspan></text>
 </g>
 <g class="rise" style="animation-delay: 0.12s">
-  <text class="muted" x="40" y="258" font-size="16">${esc(profile.tagline[0])}</text>
-  <text x="40" y="281" font-size="16">${esc(profile.tagline[1])}</text>
+  <text class="muted" x="40" y="194" font-size="16">${esc(profile.tagline[0])}</text>
+  <text x="40" y="217" font-size="16">${esc(profile.tagline[1])}</text>
 </g>
 
-<path d="M0 298.5H${W}" stroke="${c.border}"/>
-<text class="label" x="40" y="326">TOTAL VISITS</text>
-${odometer(full(stats.visits), 40, 360, 24)}
-${stat(300, "FAVOURITES", compact(stats.favourites))}
+<path d="M0 234.5H${W}" stroke="${c.border}"/>
+<text class="label" x="40" y="262">TOTAL VISITS</text>
+${odometer(full(stats.visits), 40, 296, 24)}
+${stat(300, "PLAYING NOW", full(stats.playing), true)}
 ${stat(470, "GAMES SHIPPED", String(stats.games).padStart(2, "0"))}
 ${stat(650, "BASED IN", profile.location)}
 `;
