@@ -2,11 +2,16 @@ name: Refresh game stats
 
 on:
   schedule:
-    - cron: "17 6 * * *"
+    - cron: "*/15 * * * *"
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: refresh
 
 jobs:
   refresh:
@@ -17,10 +22,18 @@ jobs:
         with:
           node-version: 22
       - run: node scripts/build.mjs
-      - name: Commit updated cards
+      # The cards live on their own branch so that refreshing them every few
+      # minutes doesn't fill main's history.
+      - uses: actions/checkout@v4
+        with:
+          ref: live
+          path: live
+      - name: Publish cards to the live branch
         run: |
+          cp assets/*.svg live/
+          cd live
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets
-          git diff --cached --quiet || git commit -m "Refresh game stats"
-          git push
+          git add -A
+          git diff --cached --quiet || git commit -q -m "Refresh cards"
+          git push -q
