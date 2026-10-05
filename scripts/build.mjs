@@ -211,7 +211,7 @@ ${
     : ""
 }
 <text class="mono" x="672" y="28" font-size="14" font-weight="500" text-anchor="end">${compact(game.favourites)}</text>
-<text class="label" x="672" y="46" font-size="9.5" text-anchor="end">FAVS</text>
+<text class="label" x="672" y="46" font-size="9.5" text-anchor="end">FAVOURITES</text>
 <text class="mono" x="770" y="28" font-size="14" font-weight="500" text-anchor="end">${compact(game.visits)}</text>
 <text class="label" x="770" y="46" font-size="9.5" text-anchor="end">VISITS</text>
 ${arrow(796, 26, 10)}
